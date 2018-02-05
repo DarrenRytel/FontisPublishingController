@@ -8,10 +8,10 @@ public class PlayerController : MonoBehaviour
     public float drag = 0.5f;
     public float terminalRoationSpeed = 25.0f;
     public Vector3 MoveVector { set; get; }
-    public VitrualJoystick JoyStick { set; get; }
+    public VitrualJoystick joyStick { set; get; }
 
     private Rigidbody thisRigidbody;
-    private Transform camTransform;
+    public Transform camTransform;
 
 	// Use this for initialization
 	void Start ()
@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
         thisRigidbody = gameObject.AddComponent<Rigidbody>();
         thisRigidbody.maxAngularVelocity = terminalRoationSpeed;
         thisRigidbody.drag = drag;
+
+        joyStick = GameObject.FindGameObjectWithTag("JoyStick").GetComponent<VitrualJoystick>();
     }
 	
 	// Update is called once per frame
@@ -40,8 +42,8 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 dir = Vector3.zero;
 
-        dir.x = JoyStick.Horizontal();
-        dir.z = JoyStick.Vertical();
+        dir.x = joyStick.Horizontal();
+        dir.z = joyStick.Vertical();
 
         if (dir.magnitude > 1)
             dir.Normalize();
@@ -61,7 +63,7 @@ public class PlayerController : MonoBehaviour
         {
             //if you alread have a camera use this instead
             camTransform = Camera.main.transform;
-            camTransform = GetComponent<PlayerCamera>().CamTransform;
+            //camTransform = GetComponent<PlayerCamera>().CamTransform;
             return MoveVector;
         }
     }

@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityStandardAssets.CrossPlatformInput;               //DarrenRytel  
 
 public class Controller : MonoBehaviour {
 	public GameObject SupCam;
@@ -11,31 +10,18 @@ public class Controller : MonoBehaviour {
 	public float MoveForwarBack, MoveRightLeft; 
 	private float tim;
 
-    //finding where the player has started touching the screen
-    private Vector2 touchOrigin = -Vector2.one;
-
 	public bool ContactingRope = false;
 	// Use this for initialization
 
 	public GameObject myMap;
 	//Map Image Current
 	public GameObject myLight;
-    //Flashlight
-    /*
-    public float moveForce = 5, SpeedBoost = 2;            //DarrenRytel
-    Rigidbody myBody;                                      //DarrenRytel
-    public Vector3 MoveVector {set; get; }                 //DarrenRytel
-    public VitrualJoystick JoyStick { set; get; }          //DarrenRytel
-    private Transform camTransform;                          //DarrenRytel
-    private Rigidbody thisRigidbody;                             //DarrenRytel
-    */
-    void Start ()                                              
-    {
-        //thisRigidbody = gameObject.AddComponent<Rigidbody>();   //DarrenRytel
+	//Flashlight
 
-    }
+	void Start () {
 
-  
+	}
+	
 	// Update is called once per frame
 	void Update () {
 
@@ -70,24 +56,24 @@ public class Controller : MonoBehaviour {
 		if(!Input.GetKey(KeyCode.W))
 			if(MoveForwarBack == 0)
 		{
-			//animator.SetFloat(NameVarWalkForward, 0);         //DarrenRytel
+			animator.SetFloat(NameVarWalkForward, 0);
 		}
 		if(!Input.GetKey(KeyCode.S))
 			if(MoveForwarBack == 0)
 		{
-			//animator.SetFloat(NameVarWalkBack, 0);            //DarrenRytel
+			animator.SetFloat(NameVarWalkBack, 0);
 		}
 		//////////////////////////////////////////////////
 		MoveRightLeft = Input.GetAxis("Horizontal");
 		if(!Input.GetKey(KeyCode.A))
 			if(MoveRightLeft == 0)
 		{
-			//animator.SetFloat(NameVarStrafeLeft, 0);//DarrenRytel
+			animator.SetFloat(NameVarStrafeLeft, 0);
 		}
 		if(!Input.GetKey(KeyCode.D))
 			if(MoveRightLeft == 0)
 		{
-			//animator.SetFloat(NameVarStrafeRight, 0);//DarrenRytel
+			animator.SetFloat(NameVarStrafeRight, 0);
 		}
 		////////////////////////////////////////////////
 		if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
@@ -114,33 +100,9 @@ public class Controller : MonoBehaviour {
 			SpeedMove = 3f; // use whatever value you want here, just make sure it's larger than below
 		} else {
 			SpeedMove = 1f;
-		}
-        /////////////////////////////////////////////////////////
-        /*
-        if (Input.touchCount > 0)
-        {
-            Touch myTouch = Input.touches[0];
-
-            if(myTouch.phase == TouchPhase.Began)
-            {
-                touchOrigin = myTouch.position;
-            }
-            else if (myTouch.phase == TouchPhase.Ended && touchOrigin.x >= 0)
-            {
-                Vector2 touchEnd = myTouch.position;
-                float x = touchEnd.x - touchOrigin.x;
-                float y = touchEnd.y - touchOrigin.y;
-                touchOrigin.x = -1;
-                if (Mathf.Abs(x) > Mathf.Abs(y))
-                    horizontal = x > 0 ? 1 : -1;
-                else
-                    vertical = y > 0 ? 1 : -1;
-            }
-        }
-        */
-        
-    }
-    
+		} 
+	
+	}
 
 	void FixedUpdate () {
 		if(Input.GetAxis("Vertical") > 0)
@@ -152,13 +114,10 @@ public class Controller : MonoBehaviour {
 		if(Input.GetAxis("Horizontal") < 0)
 			animator.SetFloat(NameVarStrafeLeft, MoveRightLeft * -1);
 
-        //animator.SetInteger(NameVarRun, Run);                 //DarrenRytel
-        //animator.SetInteger(NameVarJump, Jump);              //DarrenRytel
-        //animator.SetInteger(NameVarLooking, Look);           //DarrenRytel
-
-        //Vector2 moveVec = new Vector2(CrossPlatformInputManager.GetAxis("Horizontal"), CrossPlatformInputManager.GetAxis("Vertical")); //* SpeedMove;       //DarrenRytel
-        //thisRigidbody.AddForce(moveVec);               //DarrenRytel
-    }
+		animator.SetInteger(NameVarRun, Run);
+		animator.SetInteger(NameVarJump, Jump);
+		animator.SetInteger(NameVarLooking, Look);
+	}
 
 
 

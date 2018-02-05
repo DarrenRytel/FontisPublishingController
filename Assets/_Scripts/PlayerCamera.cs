@@ -18,9 +18,9 @@ public class PlayerCamera : MonoBehaviour {
     private float sensitivityX = 4.0f;
     private float sensivityY = 1.0f;
 
-    //private Vector3 offset;
-    //private float yOffset = 3.5f;
-    //public Transform lookAt;
+    private Vector3 offset;
+    private float yOffset = 3.5f;
+    public Transform lookAt;
 
     // Use this for initialization
     void Start ()
@@ -31,7 +31,7 @@ public class PlayerCamera : MonoBehaviour {
 
         thisTransform = transform;
 
-        //offset = new Vector3(0, yOffset, -1f * distance);
+        offset = new Vector3(0, yOffset, -1f * distance);
 
 	}
 	
@@ -66,9 +66,9 @@ public class PlayerCamera : MonoBehaviour {
         return Mathf.Clamp(angle, min, max);
     }
 
-    //public void SlideCamera(bool left)
-    //{
-    //    if (left)
-    //        offset = Quaternion.Euler(0, 90, 0) * offset;
-    //}
+    public void SlideCamera(bool left)
+    {
+        if (left)
+            offset = Quaternion.Euler(0, 90, 0) * offset;
+    }
 }

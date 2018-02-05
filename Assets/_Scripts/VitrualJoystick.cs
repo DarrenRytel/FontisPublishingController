@@ -52,7 +52,7 @@ public class VitrualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
     public float Vertical()
     {
         if (inputVector.z != 0)
-            return inputVector.x;
+            return inputVector.z;
         else
             return Input.GetAxis("Vertical");
     }
